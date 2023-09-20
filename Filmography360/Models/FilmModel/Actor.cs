@@ -2,6 +2,20 @@
 
 public class Actor
 {
+    public Actor (int id, string filmStarredIn, string fullName, string dateOfBirth, int age, string height, string career, string role, string biography, string pictureUrl)
+    {
+        Id = id;
+        FilmStarredIn = filmStarredIn;
+        FullName = fullName;
+        DateOfBirth = dateOfBirth;
+        Age = age;
+        this.height = height;
+        Career = career;
+        Role = role;
+        Biography = biography;
+        PictureUrl = pictureUrl;
+    }
+
     public int Id { get; set; }
     public string FilmStarredIn { get; set; }
     public string FullName { get; set; }
@@ -13,5 +27,4 @@ public class Actor
     public string Biography { get; set; }
     public string PictureUrl { get; set; }
 
-    public List<FilmInfo>? Filmography { get; set; }
 }
