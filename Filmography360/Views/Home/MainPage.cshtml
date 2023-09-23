@@ -1,0 +1,23 @@
+﻿@page
+@model Filmography360.Views.Home.MainPageModel
+@{
+}
+
+@foreach (var film in Filmography360.FakerInfo.FakerInfo.FilmList) {
+    <table>
+        <thead>
+            <tr>
+                <th>Film Name</th>
+                <th>Actor Name</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var actor in Filmography360.FakerInfo.FakerInfo.ActorList.Where(a => a.FilmStarredIn == film.Name)) {
+                <tr>
+                    <td>@film.Name - </td>
+                    <td>@actor.FullName</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

@@ -4,10 +4,8 @@ namespace Filmography360.Controllers;
 
 public class HomeController : Controller
 {
-
-    public IActionResult Index ()
+    public IActionResult MainPage ()
     {
         return View();
     }
-
 }

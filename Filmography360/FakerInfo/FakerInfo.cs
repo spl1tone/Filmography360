@@ -1,18 +1,28 @@
 ﻿using Bogus;
 using Filmography360.Models.FilmModel;
+using Filmography360.Views.Home;
 using System.Globalization;
 
 namespace Filmography360.FakerInfo;
 
 public class FakerInfo
 {
+    public static List<FilmInfo> FilmList = new();
+    public static List<Actor> ActorList = new();
+
+
+    static MainPageModel mainPage = new();
     static Random random = new Random();
     static int ActorId = 1;
     static string[] MPAAS = { "G", "PG", "PG-13", "R" };
     static string[] Roles = { "Actor", "Director", "Producer", "Screenwriter", "Cinematographer", "Film Editor", "Costume Designer", "Makeup Artist", "Stunt Performer", "Set Designer", "Composer", "Production Assistant", "Casting Director" };
-    public void CreateData ()
+    public void CreateData (int filmCount)
     {
-        for (int i = 1; i <= 2; i++) {
+        if (filmCount <= 0) throw new Exception("filmCount must be > 0 ");
+
+
+
+        for (int i = 1; i <= filmCount; i++) {
             var faker = new Faker<FilmInfo>()
              .RuleFor(f => f.Id, f => i)
              .RuleFor(f => f.Name, f => f.Commerce.ProductName())
@@ -49,8 +59,13 @@ public class FakerInfo
             Console.WriteLine(new string('-', 30));
             Console.WriteLine("\n");
 
+            FilmList.Add(filmInfo);
+
+            // Add film to Model
+            //  mainPage.AddFilm(filmInfo);
+
             //Add Actors
-            var actorsCount = random.Next(1, 10);
+            var actorsCount = random.Next(4, 11);
             for (int j = 1; j <= actorsCount; j++) {
                 AddActors(filmInfo.Name);
                 ActorId++;
@@ -88,6 +103,11 @@ public class FakerInfo
         Console.WriteLine($"PictureUrl: {actor.PictureUrl}");
         Console.WriteLine(new string('-', 30));
         Console.WriteLine("\n");
+
+        ActorList.Add(actor);
+
+        //Add actors to model
+        //   mainPage.AddActor(actor);
     }
 
     string FormatDuration (TimeSpan time) => $"{time.Hours} hours {time.Minutes} minutes";
