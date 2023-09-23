@@ -6,33 +6,30 @@ namespace Filmography360.FakerInfo;
 
 public class FakerInfo
 {
+    static Random random = new Random();
+    static int ActorId = 1;
+    static string[] MPAAS = { "G", "PG", "PG-13", "R" };
+    static string[] Roles = { "Actor", "Director", "Producer", "Screenwriter", "Cinematographer", "Film Editor", "Costume Designer", "Makeup Artist", "Stunt Performer", "Set Designer", "Composer", "Production Assistant", "Casting Director" };
     public void CreateData ()
     {
-        for (int i = 1; i <= 10; i++) {
+        for (int i = 1; i <= 2; i++) {
             var faker = new Faker<FilmInfo>()
              .RuleFor(f => f.Id, f => i)
              .RuleFor(f => f.Name, f => f.Commerce.ProductName())
-             .RuleFor(f => f.Genre, f => f.Commerce.Categories(1)[0])
+             .RuleFor(f => f.Genre, f => RandomCategories(f.Commerce.Categories(random.Next(1, 4))))
              .RuleFor(f => f.Description, f => f.Lorem.Sentence(15))
              .RuleFor(f => f.Facts, f => f.Lorem.Paragraph(4))
              .RuleFor(f => f.ReasonsToLook, f => f.Lorem.Paragraph(3))
              .RuleFor(f => f.Duration, f => FormatDuration(f.Date.Timespan()))
              .RuleFor(f => f.YearOfIssue, f => f.Date.Past(30).Year)
-             .RuleFor(f => f.WorldPremiere, (faker, filminfo) => faker.Date.Between(new DateTime(filminfo.YearOfIssue, 1, 1), faker.Date.Past(30)).ToString("d MMMM yyyy", new CultureInfo("en-US"))) //question 1
+             .RuleFor(f => f.WorldPremiere, (faker, filminfo) => faker.Date.Between(new DateTime(filminfo.YearOfIssue, 1, 1), faker.Date.Past(30)).ToString("d MMMM yyyy", new CultureInfo("en-US")))
              .RuleFor(f => f.Age, f => f.Random.Number(12, 18))
-             .RuleFor(f => f.MPAA, f => f.PickRandom("G", "PG", "PG-13", "R"))
-             .RuleFor(f => f.Budget, f => f.Finance.Amount(10000, 10000000).ToString("C", new CultureInfo("en-US")))
+             .RuleFor(f => f.MPAA, f => f.PickRandom(MPAAS))
+             .RuleFor(f => f.Budget, f => f.Finance.Amount(10000, 10000000).ToString("C0", new CultureInfo("en-US")))
              .RuleFor(f => f.Rating, f => (float)Math.Round(f.Random.Float(1, 10), 2))
              .RuleFor(f => f.PictureUrl, f => f.Image.PicsumUrl());
 
             var filmInfo = faker.Generate();
-
-            //Add Actors
-            var random = new Random();
-            var actorsCount = random.Next(1, 10);
-            for (int j = 1; j <= actorsCount; i++) {
-                AddActors(filmInfo.Name);
-            }
 
 
             Console.WriteLine($"Id: {filmInfo.Id}");
@@ -50,26 +47,54 @@ public class FakerInfo
             Console.WriteLine($"Rating: {filmInfo.Rating}");
             Console.WriteLine($"PictureUrl: {filmInfo.PictureUrl}");
             Console.WriteLine(new string('-', 30));
+            Console.WriteLine("\n");
 
+            //Add Actors
+            var actorsCount = random.Next(1, 10);
+            for (int j = 1; j <= actorsCount; j++) {
+                AddActors(filmInfo.Name);
+                ActorId++;
+            }
         }
     }
 
     public void AddActors (string filmName)
     {
+        Console.WriteLine(new string('-', 30));
+        Console.WriteLine("\n");
         var faker = new Faker<Actor>()
-            .RuleFor(f => f.Id, f => f.UniqueIndex)
-            .RuleFor(f => f.FilmStarredIn, f => f.Random.Words())
+            .RuleFor(f => f.Id, f => ActorId)
+            .RuleFor(f => f.FilmStarredIn, f => filmName)
             .RuleFor(f => f.FullName, f => f.Name.FullName())
-            // .RuleFor(f => f.DateOfBirth, f => f.Date.Past(30))
+            .RuleFor(f => f.DateOfBirth, f => f.Date.Past(30).ToString("d MMMM yyyy", new CultureInfo("en-US")))
             .RuleFor(f => f.Age, f => f.Random.Int(20, 80))
-            //   .RuleFor(f => f.height, f => f.Person.Height.ToString())
-            .RuleFor(f => f.Career, f => f.Random.Words())
-            .RuleFor(f => f.Role, f => f.Random.Words())
+            .RuleFor(f => f.height, f => f.Random.Number(150, 210) + " cm")
+            .RuleFor(f => f.Career, f => RandomCategories(f.PickRandom(Roles, random.Next(1, 5)).ToArray()))
+            .RuleFor(f => f.Role, f => f.PickRandom(Roles))
             .RuleFor(f => f.Biography, f => f.Lorem.Paragraph())
-            .RuleFor(f => f.PictureUrl, f => f.Internet.Url());
+            .RuleFor(f => f.PictureUrl, f => f.Image.PicsumUrl());
 
+        var actor = faker.Generate();
 
+        Console.WriteLine($"Id: {actor.Id}");
+        Console.WriteLine($"FilmStarredIn: {actor.FilmStarredIn}");
+        Console.WriteLine($"FullName: {actor.FullName}");
+        Console.WriteLine($"DateOfBirth: {actor.DateOfBirth}");
+        Console.WriteLine($"Age: {actor.Age}");
+        Console.WriteLine($"Height: {actor.height}");
+        Console.WriteLine($"Career: {actor.Career}");
+        Console.WriteLine($"Role: {actor.Role}");
+        Console.WriteLine($"Biography: {actor.Biography}");
+        Console.WriteLine($"PictureUrl: {actor.PictureUrl}");
+        Console.WriteLine(new string('-', 30));
+        Console.WriteLine("\n");
     }
 
     string FormatDuration (TimeSpan time) => $"{time.Hours} hours {time.Minutes} minutes";
+    string RandomCategories (string[] items)
+    {
+        var text = string.Empty;
+        for (int i = 0; i < items.Length; i++) text = text + ", " + items[i];
+        return text.Length > 2 ? text.Substring(2) : text;
+    }
 }
