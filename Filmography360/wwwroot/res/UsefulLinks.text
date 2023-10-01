@@ -1,0 +1,83 @@
+Usefuls Links for Project:
+https://web.dev/building-a-theme-switch-component/
+https://html5css.ru/tags/tag_center.php
+https://developer.mozilla.org/ru/docs/Learn/Getting_started_with_the_web/CSS_basics
+https://remixicon.com
+https://boxicons.com
+
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+------------------ code below
+
+<body>
+<div class="container-fluid">
+            <div class="col">
+            <h1>FilmInfo360</h1>
+            <p>Three equal width columns! Try to add a new div with class="col" inside the row class - this will create four equal-width columns.</p>
+            </div>
+            <div class="row">
+              <div class="col-2" style="background-color:lavender;">Column 1</div>
+              <div class="col-8" style="background-color:orange;">Column 2</div>
+              <div class="col-2" style="background-color:lavender; height: 1000px;">Column 3</div>
+            </div>
+          </div>
+</body>
+
+
+
+
+a{
+    text-decoration: none;
+    color: white !important;
+}
+
+a:hover{
+    text-decoration: none !important;
+    color: red !important;
+}
+
+
+.dropdown-content{
+    display: none;
+    list-style-type: none;
+    padding: 0;
+}
+
+.dropdown-navigation:hover .dropdown-content{
+    display: block;
+}
+
+ <ul class="dropdown-content">
+              <li><a href="#">Main Page</a></li>
+              <li><a href="#">Useful Links</a></li>
+              <li><a href="#">About Me</a></li>
+            </ul>
+
+
+
+
+
+
+-----
+
+<div class="dropdown-navigation">
+            <p id = "navigationText">Navigation</p>  
+          </div>
+
+#navigationText:hover .dropdown-navigation{
+    background-color: red;
+}
+.dropdown-navigation{
+    width: 236px;
+    height: 34px;
+    margin-left: 200px;
+    margin-top: 8px;
+    position: absolute;
+}
+
+
+----
+          <div class = "dropdown">
+            <p id = "navigationText">Navigation</p>
+          </div>

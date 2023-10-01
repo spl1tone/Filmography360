@@ -4,7 +4,7 @@ namespace Filmography360.Controllers;
 
 public class HomeController : Controller
 {
-    public IActionResult MainPage ()
+    public IActionResult indexDark ()
     {
         return View();
     }

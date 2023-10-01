@@ -1,0 +1,133 @@
+.film-container {
+    max-width: 1500px;
+    height: 1000px;
+    margin: 0 auto;
+    background-color: rgb(75, 75, 75,0.4);
+    padding: 20px;
+}
+
+.film-title {
+    text-align: center;
+    font-size: 24px;
+    color: black;
+}
+
+.film-info {
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+    color: white;
+}
+
+.film-image {
+    width: 300px;
+    height: auto;
+    margin-right: 20px;
+    border: 2px solid black;
+    flex: 0;
+}
+
+.film-details {
+    flex: 1;
+    background-color: rgba(155, 155, 155, 0.4);
+    width: fit-content;
+    height: fit-content;
+    border: 2px solid black;
+}
+
+.film-text{
+    color: black;
+    font-size: 18px;
+    text-align: left;
+    margin-left: 20px;
+    margin-top: 20px;
+}
+
+
+.film-texts{
+    width: fit-content;
+    height: fit-content;
+}
+
+.spanClass{
+    color: white;
+}
+
+
+.actors {
+    margin-top: 20px;
+    background-color: rgba(155, 155, 155, 0.4);
+    border: 2px solid black;
+    text-align: center;
+}
+
+.actors-title {
+    font-size: 24px;
+    text-align: center;
+    color: black;
+}
+
+.actor {
+    display: inline-block;
+    margin-left: 20px;
+    text-align: center;
+    margin-top: 0px;
+}
+
+.actor-image {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+}
+
+.actor-name {
+    font-size: 18px;
+    margin-top: 5px;
+    color: black;
+}
+
+.actor-link{
+    text-decoration: none;
+    color: black;
+}
+
+.actor-link:hover .actor-image,
+.actor-link:hover .actor-name {
+    font-size: 20px;
+    transition: font-size 0.2s;
+    background-color: orange;
+}
+
+.facts-button,
+.description-button,
+.reasons-button {
+    background-color: white;
+    color: black;
+    border: none;
+    padding: 5px 10px;
+    margin-top: 10px;
+    cursor: pointer;
+    margin-left: 20px;
+    font-size: 18px;
+}
+
+.facts-button:hover,
+.description-button:hover,
+.reasons-button:hover{
+    font-size: 20px;
+    transition: font-size 0.2s;
+    background-color: orange;
+}
+
+.hidden {
+    display: none;
+}
+
+.film-facts,
+.film-reasonstolook,
+.film-description{
+    color: black;
+    font-size: 18px;
+    margin-left: 20px;
+    margin-top: 10px;
+}

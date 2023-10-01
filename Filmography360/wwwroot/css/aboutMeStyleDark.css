@@ -1,0 +1,78 @@
+#name{
+    font-size: 32px;
+    margin-left: 20px;
+    line-height: 1.5;
+    color: rgb(255, 255, 255);
+}
+
+#liBlock{
+    font-size: 18px;
+    color: rgb(255, 255, 255);
+    margin-left: 20px;
+}
+
+.containerAbout {
+    width: 800px;
+    margin-top: 20px;
+    background-color: #000000;
+    border: 2px solid white;
+    border-radius: 10px;
+    margin-left: 549px;
+}
+
+#skills{
+    font-size: 22px;
+    color: rgb(255, 255, 255);
+    margin-left: 20px;
+}
+
+#bio-text {
+    font-size: 18px;
+    line-height: 1.5;
+    text-align: center;
+    color: rgb(255, 255, 255);
+}
+
+#avatar{
+    width: 400px;
+    height: 500px;
+    margin-left: 200px;
+    margin-top: 20px;
+    border: 2px solid white;
+    border-radius: 10px;
+}
+
+#contactInfo1{
+    font-size: 22px;
+    color: white;
+    margin-left: 20px;
+}
+
+#contactInfo2{
+    font-size: 18px;
+    color: white;
+    margin-left: 20px;
+}
+
+#gitLink{
+    font-size: 18px;
+    color: white;
+    text-decoration: none;
+}
+
+#gitLink:hover{
+    font-size: 20px;
+    background-color: gray;
+    text-decoration: none;
+}
+
+#skillsText{
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+}
+#skillsText:hover{
+    text-decoration: none;
+    background-color: gray;
+    font-size: 20px;
+}

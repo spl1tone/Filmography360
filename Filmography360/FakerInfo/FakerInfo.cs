@@ -1,7 +1,7 @@
 ﻿using Bogus;
 using Filmography360.Models.FilmModel;
-using Filmography360.Views.Home;
 using System.Globalization;
+using System.Net;
 
 namespace Filmography360.FakerInfo;
 
@@ -10,8 +10,6 @@ public class FakerInfo
     public static List<FilmInfo> FilmList = new();
     public static List<Actor> ActorList = new();
 
-
-    static MainPageModel mainPage = new();
     static Random random = new Random();
     static int ActorId = 1;
     static string[] MPAAS = { "G", "PG", "PG-13", "R" };
@@ -37,7 +35,7 @@ public class FakerInfo
              .RuleFor(f => f.MPAA, f => f.PickRandom(MPAAS))
              .RuleFor(f => f.Budget, f => f.Finance.Amount(10000, 10000000).ToString("C0", new CultureInfo("en-US")))
              .RuleFor(f => f.Rating, f => (float)Math.Round(f.Random.Float(1, 10), 2))
-             .RuleFor(f => f.PictureUrl, f => f.Image.PicsumUrl());
+             .RuleFor(f => f.PictureUrl, f => CheckForInvalidPicture(f.Image.PicsumUrl()));
 
             var filmInfo = faker.Generate();
 
@@ -59,10 +57,10 @@ public class FakerInfo
             Console.WriteLine(new string('-', 30));
             Console.WriteLine("\n");
 
+            // Add film to List
             FilmList.Add(filmInfo);
 
-            // Add film to Model
-            //  mainPage.AddFilm(filmInfo);
+
 
             //Add Actors
             var actorsCount = random.Next(4, 11);
@@ -71,6 +69,20 @@ public class FakerInfo
                 ActorId++;
             }
         }
+    }
+
+    public string CheckForInvalidPicture (string pictureUrl)
+    {
+        try {
+            using (var client = new WebClient()) {
+                string html = client.DownloadString(pictureUrl);
+            }
+        }
+        catch {
+            return "https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Question_mark_%28black%29.svg/800px-Question_mark_%28black%29.svg.png";
+        }
+
+        return pictureUrl;
     }
 
     public void AddActors (string filmName)
@@ -87,7 +99,7 @@ public class FakerInfo
             .RuleFor(f => f.Career, f => RandomCategories(f.PickRandom(Roles, random.Next(1, 5)).ToArray()))
             .RuleFor(f => f.Role, f => f.PickRandom(Roles))
             .RuleFor(f => f.Biography, f => f.Lorem.Paragraph())
-            .RuleFor(f => f.PictureUrl, f => f.Image.PicsumUrl());
+            .RuleFor(f => f.PictureUrl, f => CheckForInvalidPicture(f.Image.PicsumUrl()));
 
         var actor = faker.Generate();
 
@@ -104,10 +116,10 @@ public class FakerInfo
         Console.WriteLine(new string('-', 30));
         Console.WriteLine("\n");
 
+        //Add actors to List
         ActorList.Add(actor);
 
-        //Add actors to model
-        //   mainPage.AddActor(actor);
+
     }
 
     string FormatDuration (TimeSpan time) => $"{time.Hours} hours {time.Minutes} minutes";

@@ -2,32 +2,32 @@ namespace Filmography360;
 
 public class Program
 {
-	public static void Main (string[] args)
-	{
-		FakerInfo.FakerInfo faker = new();
-		faker.CreateData(5);
-		Configuration(args);
-	}
+    public static void Main (string[] args)
+    {
+        FakerInfo.FakerInfo faker = new();
+        faker.CreateData(1);
+        Configuration(args);
+    }
 
-	private static void Configuration (string[] args)
-	{
-		var builder = WebApplication.CreateBuilder(args);
+    private static void Configuration (string[] args)
+    {
+        var builder = WebApplication.CreateBuilder(args);
 
-		builder.Services.AddControllersWithViews();
+        builder.Services.AddControllersWithViews();
 
-		var app = builder.Build();
+        var app = builder.Build();
 
-		app.UseHttpsRedirection();
-		app.UseStaticFiles();
+        app.UseHttpsRedirection();
+        app.UseStaticFiles();
 
-		app.UseRouting();
+        app.UseRouting();
 
-		app.UseAuthorization();
+        app.UseAuthorization();
 
-		app.MapControllerRoute(
-			   name: "default",
-			   pattern: "{controller=Home}/{action=MainPage}/{id?}");
+        app.MapControllerRoute(
+               name: "default",
+               pattern: "{controller=Home}/{action=indexDark}/{id?}");
 
-		app.Run();
-	}
+        app.Run();
+    }
 }

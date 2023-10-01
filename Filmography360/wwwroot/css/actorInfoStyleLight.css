@@ -1,0 +1,96 @@
+.actor-container {
+    max-width: 1500px;
+    height: 1000px;
+    margin: 0 auto;
+    background-color: rgb(75, 75, 75,0.4);
+    padding: 20px;
+}
+
+.actor-name {
+    text-align: center;
+    font-size: 24px;
+    color: black;
+}
+
+.actor-info {
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+    color: white;
+}
+
+.actor-image {
+    width: 300px;
+    height: auto;
+    margin-right: 20px;
+    border: 2px solid black;
+    flex: 0;
+}
+
+.actor-details {
+    flex: 1;
+    background-color: rgba(155, 155, 155, 0.6);
+    width: fit-content;
+    height: fit-content;
+    border: 2px solid black;
+}
+
+.actor-text{
+    color: white;
+    font-size: 18px;
+    text-align: left;
+    margin-left: 20px;
+    margin-top: 20px;
+}
+
+
+.actor-texts{
+    width: fit-content;
+    height: fit-content;
+}
+
+.film-link{
+    color: black;
+    text-decoration: none;
+    font-size: 20px;
+}
+
+.film-link:hover{
+    text-decoration: none;
+    font-size: 22px;
+    background-color: orange;
+    transition: font-size 0.2s;
+}
+
+.spanClass{
+    color: black;
+    font-size: 18px;
+}
+
+.biography-button {
+    background-color: white;
+    color: black;
+    border: none;
+    padding: 5px 10px;
+    margin-top: 10px;
+    cursor: pointer;
+    margin-left: 20px;
+    font-size: 18px;
+}
+
+.biography-button:hover{
+    font-size: 20px;
+    transition: font-size 0.2s;
+    background-color: orange;
+}
+
+.hidden {
+    display: none;
+}
+
+.actor-biography{
+    color: white;
+    font-size: 18px;
+    margin-left: 20px;
+    margin-top: 10px;
+}
