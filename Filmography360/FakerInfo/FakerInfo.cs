@@ -23,7 +23,7 @@ public class FakerInfo
         for (int i = 1; i <= filmCount; i++) {
             var faker = new Faker<FilmInfo>()
              .RuleFor(f => f.Id, f => i)
-             .RuleFor(f => f.Name, f => f.Commerce.ProductName())
+             .RuleFor(f => f.Name, f => NameSubstring(f.Commerce.ProductName()))
              .RuleFor(f => f.Genre, f => RandomCategories(f.Commerce.Categories(random.Next(1, 4))))
              .RuleFor(f => f.Description, f => f.Lorem.Sentence(15))
              .RuleFor(f => f.Facts, f => f.Lorem.Paragraph(4))
@@ -69,6 +69,14 @@ public class FakerInfo
                 ActorId++;
             }
         }
+    }
+
+    public string NameSubstring (string text)
+    {
+        if (text.Length > 12) {
+            text = text.Substring(0, 12);
+        }
+        return text;
     }
 
     public string CheckForInvalidPicture (string pictureUrl)

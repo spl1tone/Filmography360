@@ -22,3 +22,21 @@ document.addEventListener('keydown', (event) => {
     event.preventDefault(); // stop input '/' to field
   }
 });
+
+// ---
+
+const themeToggle = document.getElementById('themeText');
+const themeLink = document.getElementById('theme-link');
+
+
+themeToggle.addEventListener('click', function (e) {
+    e.preventDefault();
+
+    const currentTheme = themeLink.getAttribute('href');
+
+    if (currentTheme === '/css/indexDarkStyle.css') {
+        themeLink.setAttribute('href', '/css/indexLightStyle.css');
+    } else {
+        themeLink.setAttribute('href', '/css/indexDarkStyle.css');
+    }
+});

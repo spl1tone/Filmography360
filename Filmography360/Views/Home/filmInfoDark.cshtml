@@ -1,5 +1,5 @@
 ﻿@page
-@model Filmography360.Views.Home.filmInfoDarkModel
+@model Filmography360.Models.FilmModel.FilmInfo
 @{
 }
 
@@ -9,7 +9,7 @@
     <title>FilmInfo360</title>
     <meta charset="UTF-8">
     <meta name="description" content="Information about Film">
-    <link rel="stylesheet" type="text/css" href="~/css/indexDarkStyle.css">
+    <link id="theme-link" rel="stylesheet" type="text/css" href="~/css/indexDarkStyle.css">
     <link rel="stylesheet" type="text/css" href="~/css/filmInfoStyleDark.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 </head>
@@ -17,7 +17,7 @@
 <body>
     <div class="header">
         <div class="headerImg">
-            <img class="logoImg" src="res/pictures/logo.png" width="34px" height="34px">
+            <img class="logoImg" src="/res/pictures/logo.png" width="34px" height="34px">
         </div>
         <div class="headerText">
             <p id="headTextPart1">FilmInfo <span id="headTextPart2">360</span></p>
@@ -25,9 +25,9 @@
         <div class="dropdown-navigation">
             <p id="navigationText">Navigation</p>
             <div class="dropdown-content">
-                <a href="indexDark.html" id="dropdonwText">Main Page</a>
+                <a href="/Home/indexDark" id="dropdonwText">Main Page</a>
                 <p></p>
-                <a href="aboutMeDark.html" id="dropdonwText">About Me</a>
+                <a href="/Home/aboutMeDark" id="dropdonwText">About Me</a>
             </div>
         </div>
 
@@ -37,19 +37,19 @@
         </div>
 
         <div class="themeClass">
-            <img class="themeImg" src="res/pictures/themeIcon.png">
-            <a href="filmInfoLight.html" id="themeText">Theme</a>
+            <img class="themeImg" src="/res/pictures/themeIcon.png">
+            <a href="/Home/filmInfoLight" id="themeText">Theme</a>
         </div>
 
         <div class="account">
-            <p id="accountNameText">Test Account</p>
+            <p id="accountNameText">Account</p>
         </div>
     </div>
 
         <div class="film-container">
-            <h1 class="film-title">Film Name</h1>
+        <h1 class="film-title">@Model.Name</h1>
             <div class="film-info">
-                <img class="film-image" src="res/pictures/myAvatar.jpg">
+                <img class="film-image" src="/res/pictures/myAvatar.jpg">
                 <div class="film-details">
                     <button class="facts-button">Facts</button>
                     <button class="reasons-button">ReasonsToLook</button>
