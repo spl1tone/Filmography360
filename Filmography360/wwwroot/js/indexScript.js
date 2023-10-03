@@ -40,3 +40,38 @@ themeToggle.addEventListener('click', function (e) {
         themeLink.setAttribute('href', '/css/indexDarkStyle.css');
     }
 });
+
+// ---
+
+document.addEventListener("DOMContentLoaded", function () {
+    var searchInput = document.getElementById("search-input");
+    var filmContainers = document.querySelectorAll(".film");
+
+
+    function updateDisplay() {
+        var searchText = searchInput.value.toLowerCase();
+        var visibleCount = 0;
+
+        filmContainers.forEach(function (filmContainer) {
+            var filmName = filmContainer.querySelector("#film-name").textContent.toLowerCase();
+            var shouldBeVisible = searchText === "" || filmName.includes(searchText);
+
+            if (shouldBeVisible) {
+                filmContainer.style.display = "inline-block";
+                visibleCount++;
+            } else {
+                filmContainer.style.display = "none";
+            }
+
+            if (visibleCount % 5 === 0) {
+                filmContainer.style.clear = "left";
+            } else {
+                filmContainer.style.clear = "none";
+            }
+        });
+    }
+
+    searchInput.addEventListener("input", updateDisplay);
+
+    updateDisplay();
+});
