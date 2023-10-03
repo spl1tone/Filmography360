@@ -2,6 +2,7 @@
 @model Filmography360.Models.FilmModel.Actor
 @{
     var actor = Filmography360.FakerInfo.FakerInfo.ActorList.FirstOrDefault(a => a.Id == ViewBag.ActorId);
+    var film = Filmography360.FakerInfo.FakerInfo.FilmList.FirstOrDefault(f => f.Name == actor.FilmStarredIn);
 }
 
 <!Doctype html>
@@ -59,7 +60,7 @@
                     @actor.Biography
                 </p>
                 <div class="actor-texts">
-                    <p class="actor-text">FilmStarredIn: <a class="film-link" href="filmInfoDark.html">@actor.FilmStarredIn</a></p>
+                    <p class="actor-text">FilmStarredIn: <a class="film-link" href="/Home/filmInfoDark/@film.Id">@actor.FilmStarredIn</a></p>
                     <p class="actor-text">Full Name: <span class="spanClass">@actor.FullName</span></p>
                     <p class="actor-text">Date Of Birth: <span class="spanClass">@actor.DateOfBirth</span></p>
                     <p class="actor-text">Age: <span class="spanClass">@actor.Age</span></p>
