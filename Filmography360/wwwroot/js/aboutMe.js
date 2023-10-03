@@ -26,20 +26,20 @@ document.addEventListener('keydown', (event) => {
 // ---
 
 const themeToggle = document.getElementById('themeText');
-const themeLink = document.getElementById('theme-link');
-const themeLink1 = document.getElementById('theme-link1');
+const themeLinkIndex = document.getElementById('theme-link');
+const themeLinkAbout = document.getElementById('theme-link1');
 
 themeToggle.addEventListener('click', function (e) {
     e.preventDefault();
 
-    const currentTheme = themeLink.getAttribute('href');
-    const currentTheme1 = themeLink1.getAttribute('href');
+    const currentThemeIndex = themeLinkIndex.getAttribute('href');
+    const currentThemeAbout = themeLinkAbout.getAttribute('href');
 
-    if (currentTheme === '/css/aboutMeStyleDark.css' && currentTheme1 === '/css/indexDarkStyle.css') {
-        themeLink.setAttribute('href', '/css/aboutMeStyleLight.css');
-        themeLink1.setAttribute('href', '/css/indexLightStyle.css');
+    if (currentThemeAbout === '/css/aboutMeStyleDark.css' && currentThemeIndex === '/css/indexDarkStyle.css') {
+        themeLinkAbout.setAttribute('href', '/css/aboutMeStyleLight.css');
+        themeLinkIndex.setAttribute('href', '/css/indexLightStyle.css');
     } else {
-        themeLink.setAttribute('href', '/css/aboutMeStyleDark.css');
-        themeLink1.setAttribute('href', '/css/indexDarkStyle.css');
+        themeLinkAbout.setAttribute('href', '/css/aboutMeStyleDark.css');
+        themeLinkIndex.setAttribute('href', '/css/indexDarkStyle.css');
     }
 });
