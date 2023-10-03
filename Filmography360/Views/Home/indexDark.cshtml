@@ -117,8 +117,8 @@
         @for (var i = 0; i < Filmography360.FakerInfo.FakerInfo.FilmList.Count; i++) {
             var film = Filmography360.FakerInfo.FakerInfo.FilmList[i];
             <div class="film">
-                <a id="film-link" href="/Home/filmInfoDark?name=@film.Name">
-                    <img id="filmImage" src="@film.PictureUrl" width = "176px" height="264px">
+                <a id="film-link" href="/Home/filmInfoDark/@film.Id">
+                    <img id="filmImage" src="@film.PictureUrl" width = "176" height="264">
                     <p id="film-name">@film.Name</p>
                 </a>
             </div>

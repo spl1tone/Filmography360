@@ -14,14 +14,26 @@ public class HomeController : Controller
         return View("aboutMeDark");
     }
 
-    public IActionResult FilmInfoDark (string filmName)
+    public IActionResult FilmInfoDark (int id)
     {
-        var film = Filmography360.FakerInfo.FakerInfo.FilmList.FirstOrDefault(f => f.Name == filmName);
-        if (film == null) {
-            return NotFound();
-        }
+        // Отримайте дані про фільм зі списку FilmList за ідентифікатором.
+        var film = Filmography360.FakerInfo.FakerInfo.FilmList.FirstOrDefault(f => f.Id == id);
 
-        return View(film);
+        ViewBag.Id = film.Id;
+
+        // Передайте дані про фільм в перегляд для відображення.
+        return View("filmInfoDark");
+    }
+
+    public IActionResult ActorInfoDark (int id)
+    {
+        // Отримайте дані про фільм зі списку FilmList за ідентифікатором.
+        var actor = Filmography360.FakerInfo.FakerInfo.ActorList.FirstOrDefault(a => a.Id == id);
+
+        ViewBag.ActorId = actor.Id;
+
+        // Передайте дані про фільм в перегляд для відображення.
+        return View("actorInfoDark");
     }
 
 }

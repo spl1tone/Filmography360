@@ -1,6 +1,7 @@
 ﻿@page
-@model Filmography360.Views.Home.actorInfoDarkModel
+@model Filmography360.Models.FilmModel.Actor
 @{
+    var actor = Filmography360.FakerInfo.FakerInfo.ActorList.FirstOrDefault(a => a.Id == ViewBag.ActorId);
 }
 
 <!Doctype html>
@@ -26,9 +27,9 @@
         <div class="dropdown-navigation">
             <p id="navigationText">Navigation</p>
             <div class="dropdown-content">
-                <a href="indexDark.html" id="dropdonwText">Main Page</a>
+                <a href="/Home/indexDark" id="dropdonwText">Main Page</a>
                 <p></p>
-                <a href="aboutMeDark.html" id="dropdonwText">About Me</a>
+                <a href="/Home/aboutMeDark" id="dropdonwText">About Me</a>
             </div>
         </div>
 
@@ -49,22 +50,22 @@
 
 
     <div class="actor-container">
-        <p class="actor-name">Actor Name</p>
+        <p class="actor-name">@actor.FullName</p>
         <div class="actor-info">
-            <img class="actor-image" src="res/pictures/myAvatar.jpg">
+            <img class="actor-image" src="@actor.PictureUrl" width="300" height="555">
             <div class="actor-details">
                 <button class="biography-button">Biography</button>
                 <p class="actor-biography hidden">
-                    Actor Biography
+                    @actor.Biography
                 </p>
                 <div class="actor-texts">
-                    <p class="actor-text">FilmStarredIn: <a class="film-link" href="filmInfoDark.html">Film Name</a></p>
-                    <p class="actor-text">Full Name: <span class="spanClass">Actor Name</span></p>
-                    <p class="actor-text">Date Of Birth: <span class="spanClass">01.01.2000</span></p>
-                    <p class="actor-text">Age: <span class="spanClass">18</span></p>
-                    <p class="actor-text">Height: <span class="spanClass">185 cm</span></p>
-                    <p class="actor-text">Carrer: <span class="spanClass">Director</span></p>
-                    <p class="actor-text">Role: <span class="spanClass">Actor</span></p>
+                    <p class="actor-text">FilmStarredIn: <a class="film-link" href="filmInfoDark.html">@actor.FilmStarredIn</a></p>
+                    <p class="actor-text">Full Name: <span class="spanClass">@actor.FullName</span></p>
+                    <p class="actor-text">Date Of Birth: <span class="spanClass">@actor.DateOfBirth</span></p>
+                    <p class="actor-text">Age: <span class="spanClass">@actor.Age</span></p>
+                    <p class="actor-text">Height: <span class="spanClass">@actor.height</span></p>
+                    <p class="actor-text">Carrer: <span class="spanClass">@actor.Career</span></p>
+                    <p class="actor-text">Role: <span class="spanClass">@actor.Role</span></p>
                 </div>
 
             </div>

@@ -5,7 +5,7 @@ public class Program
     public static void Main (string[] args)
     {
         FakerInfo.FakerInfo faker = new();
-        faker.CreateData(1);
+        faker.CreateData(5);
         Configuration(args);
     }
 

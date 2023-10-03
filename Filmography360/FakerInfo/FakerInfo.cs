@@ -100,7 +100,7 @@ public class FakerInfo
         var faker = new Faker<Actor>()
             .RuleFor(f => f.Id, f => ActorId)
             .RuleFor(f => f.FilmStarredIn, f => filmName)
-            .RuleFor(f => f.FullName, f => f.Name.FullName())
+            .RuleFor(f => f.FullName, f => NameSubstring(f.Name.FullName()))
             .RuleFor(f => f.DateOfBirth, f => f.Date.Past(30).ToString("d MMMM yyyy", new CultureInfo("en-US")))
             .RuleFor(f => f.Age, f => f.Random.Int(20, 80))
             .RuleFor(f => f.height, f => f.Random.Number(150, 210) + " cm")
