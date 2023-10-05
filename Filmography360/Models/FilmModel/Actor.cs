@@ -1,8 +1,12 @@
-﻿namespace Filmography360.Models.FilmModel;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace Filmography360.Models.FilmModel;
 
 public class Actor
 {
-
+    [Key]
+    [DatabaseGenerated(DatabaseGeneratedOption.None)]
     public int Id { get; set; }
     public string FilmStarredIn { get; set; }
     public string FullName { get; set; }

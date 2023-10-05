@@ -1,9 +1,11 @@
 ﻿@page
 @model Filmography360.Models.FilmModel.FilmInfo
+@using db = Filmography360.DataBase.DbContextController.MainDbContext;
 
 @{
-    var film = Filmography360.FakerInfo.FakerInfo.FilmList.FirstOrDefault(f => f.Id == ViewBag.Id);
-    var actorList = Filmography360.FakerInfo.FakerInfo.ActorList.FindAll(a => a.FilmStarredIn == film.Name);
+    var _db = new db();
+    var film = _db.FilmInfos.FirstOrDefault(f => f.Id == (int)ViewBag.Id);
+    var actors = _db.Actors.Where(a => a.FilmStarredIn == film.Name).ToList();
 }
 
 <!DOCTYPE html>
@@ -82,7 +84,7 @@
             <div class="actors">
                 <p class="actors-title">Actors</p>
 
-            @foreach(var actor in actorList){
+            @foreach(var actor in actors){
 
             <div class="actor">
                 <a class="actor-link" href="/Home/actorInfoDark/@actor.Id">

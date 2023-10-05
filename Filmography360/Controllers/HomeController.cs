@@ -1,9 +1,18 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Filmography360.DataBase.DbContextController;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Filmography360.Controllers;
 
 public class HomeController : Controller
 {
+
+    private readonly MainDbContext _db;
+
+    public HomeController (MainDbContext db)
+    {
+        _db = db;
+    }
+
     public IActionResult IndexDark ()
     {
         return View("indexDark");
@@ -16,7 +25,7 @@ public class HomeController : Controller
 
     public IActionResult FilmInfoDark (int id)
     {
-        var film = Filmography360.FakerInfo.FakerInfo.FilmList.FirstOrDefault(f => f.Id == id);
+        var film = _db.FilmInfos.FirstOrDefault(f => f.Id == id);
 
         ViewBag.Id = film.Id;
 
@@ -26,7 +35,7 @@ public class HomeController : Controller
     [Route("Home/ActorInfoDark/{id}")]
     public IActionResult ActorInfoDark (int id)
     {
-        var actor = Filmography360.FakerInfo.FakerInfo.ActorList.FirstOrDefault(a => a.Id == id);
+        var actor = _db.Actors.FirstOrDefault(a => a.Id == id);
 
         ViewBag.ActorId = actor.Id;
 

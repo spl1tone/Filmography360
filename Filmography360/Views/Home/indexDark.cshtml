@@ -1,6 +1,8 @@
 ﻿@page
 @model Filmography360.Views.Home.indexDarkModel
+@using db = Filmography360.DataBase.DbContextController.MainDbContext;
 @{
+    var films = new db().FilmInfos.ToList();
 }
 <!Doctype html>
 <html lang="en">
@@ -114,8 +116,7 @@
             </a>
         </div>-->
 
-        @for (var i = 0; i < Filmography360.FakerInfo.FakerInfo.FilmList.Count; i++) {
-            var film = Filmography360.FakerInfo.FakerInfo.FilmList[i];
+        @foreach (var film in films) {
             <div class="film">
                 <a id="film-link" href="/Home/filmInfoDark/@film.Id">
                     <img id="filmImage" src="@film.PictureUrl" width = "176" height="264">

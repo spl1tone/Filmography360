@@ -4,8 +4,8 @@ public class Program
 {
     public static void Main (string[] args)
     {
-        FakerInfo.FakerInfo faker = new();
-        faker.CreateData(5);
+        // FakerInfo.FakerInfo faker = new();
+        //  faker.CreateData(100);
         Configuration(args);
     }
 

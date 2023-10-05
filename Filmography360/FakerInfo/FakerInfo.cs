@@ -2,6 +2,7 @@
 using Filmography360.Models.FilmModel;
 using System.Globalization;
 using System.Net;
+using db = Filmography360.DataBase.DbContextController.MainDbContext;
 
 namespace Filmography360.FakerInfo;
 
@@ -14,8 +15,11 @@ public class FakerInfo
     static int ActorId = 1;
     static string[] MPAAS = { "G", "PG", "PG-13", "R" };
     static string[] Roles = { "Actor", "Director", "Producer", "Screenwriter", "Cinematographer", "Film Editor", "Costume Designer", "Makeup Artist", "Stunt Performer", "Set Designer", "Composer", "Production Assistant", "Casting Director" };
+
     public void CreateData (int filmCount)
     {
+        var _db = new db();
+
         if (filmCount <= 0) throw new Exception("filmCount must be > 0 ");
 
 
@@ -39,7 +43,6 @@ public class FakerInfo
 
             var filmInfo = faker.Generate();
 
-
             Console.WriteLine($"Id: {filmInfo.Id}");
             Console.WriteLine($"Name: {filmInfo.Name}");
             Console.WriteLine($"Genre: {filmInfo.Genre}");
@@ -58,8 +61,9 @@ public class FakerInfo
             Console.WriteLine("\n");
 
             // Add film to List
-            FilmList.Add(filmInfo);
-
+            //FilmList.Add(filmInfo);
+            _db.FilmInfos.Add(filmInfo);
+            _db.SaveChanges();
 
 
             //Add Actors
@@ -69,6 +73,7 @@ public class FakerInfo
                 ActorId++;
             }
         }
+
     }
 
     public string NameSubstring (string text)
@@ -95,6 +100,7 @@ public class FakerInfo
 
     public void AddActors (string filmName)
     {
+        var _db = new db();
         Console.WriteLine(new string('-', 30));
         Console.WriteLine("\n");
         var faker = new Faker<Actor>()
@@ -125,7 +131,9 @@ public class FakerInfo
         Console.WriteLine("\n");
 
         //Add actors to List
-        ActorList.Add(actor);
+        //ActorList.Add(actor);
+        _db.Actors.Add(actor);
+        _db.SaveChanges();
 
 
     }
