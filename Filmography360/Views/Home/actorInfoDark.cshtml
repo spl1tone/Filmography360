@@ -3,8 +3,9 @@
 @using db = Filmography360.DataBase.DbContextController.MainDbContext;
 @{
     var _db = new db();
-    var actor = _db.Actors.FirstOrDefault(a => a.Id == (int)ViewBag.ActorId);
-    var filmId = _db.FilmInfos.FirstOrDefault(f => f.Name == actor.FilmStarredIn).Id;
+    int? actorId = ViewBag.ActorId;
+    var actor = _db.Actors.FirstOrDefault(a => a.Id == actorId);
+    var filmId = _db.FilmInfos.FirstOrDefault(f => f.Id == actor.FilmInfoId).Id;
 }
 
 <!Doctype html>
@@ -66,7 +67,7 @@
                     <p class="actor-text">Full Name: <span class="spanClass">@actor.FullName</span></p>
                     <p class="actor-text">Date Of Birth: <span class="spanClass">@actor.DateOfBirth</span></p>
                     <p class="actor-text">Age: <span class="spanClass">@actor.Age</span></p>
-                    <p class="actor-text">Height: <span class="spanClass">@actor.height</span></p>
+                    <p class="actor-text">Height: <span class="spanClass">@actor.Height</span></p>
                     <p class="actor-text">Carrer: <span class="spanClass">@actor.Career</span></p>
                     <p class="actor-text">Role: <span class="spanClass">@actor.Role</span></p>
                 </div>

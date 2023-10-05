@@ -10,7 +10,7 @@ public class MainDbContext : DbContext
 
     protected override void OnConfiguring (DbContextOptionsBuilder _options)
     {
-        _options.UseSqlServer("Server=(localdb)\\MSSQLLocalDB;Database=FilmDatabase;Trusted_Connection=True;");
+        _options.UseSqlServer("Server=(localdb)\\MSSQLLocalDB;Database=FilmDB;Trusted_Connection=True;");
     }
 
 }

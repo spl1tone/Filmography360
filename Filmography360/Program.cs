@@ -1,11 +1,13 @@
+using Filmography360.DataBase.DbContextController;
+
 namespace Filmography360;
 
 public class Program
 {
     public static void Main (string[] args)
     {
-        // FakerInfo.FakerInfo faker = new();
-        //  faker.CreateData(100);
+        //FakerInfo.FakerInfo faker = new();
+        //faker.CreateData(100);
         Configuration(args);
     }
 
@@ -14,6 +16,7 @@ public class Program
         var builder = WebApplication.CreateBuilder(args);
 
         builder.Services.AddControllersWithViews();
+        builder.Services.AddDbContext<MainDbContext>();
 
         var app = builder.Build();
 

@@ -69,7 +69,7 @@ public class FakerInfo
             //Add Actors
             var actorsCount = random.Next(4, 11);
             for (int j = 1; j <= actorsCount; j++) {
-                AddActors(filmInfo.Name);
+                AddActors(filmInfo.Name, i);
                 ActorId++;
             }
         }
@@ -98,7 +98,7 @@ public class FakerInfo
         return pictureUrl;
     }
 
-    public void AddActors (string filmName)
+    public void AddActors (string filmName, int filmId)
     {
         var _db = new db();
         Console.WriteLine(new string('-', 30));
@@ -109,11 +109,12 @@ public class FakerInfo
             .RuleFor(f => f.FullName, f => NameSubstring(f.Name.FullName()))
             .RuleFor(f => f.DateOfBirth, f => f.Date.Past(30).ToString("d MMMM yyyy", new CultureInfo("en-US")))
             .RuleFor(f => f.Age, f => f.Random.Int(20, 80))
-            .RuleFor(f => f.height, f => f.Random.Number(150, 210) + " cm")
+            .RuleFor(f => f.Height, f => f.Random.Number(150, 210) + " cm")
             .RuleFor(f => f.Career, f => RandomCategories(f.PickRandom(Roles, random.Next(1, 5)).ToArray()))
             .RuleFor(f => f.Role, f => f.PickRandom(Roles))
             .RuleFor(f => f.Biography, f => f.Lorem.Paragraph())
-            .RuleFor(f => f.PictureUrl, f => CheckForInvalidPicture(f.Image.PicsumUrl()));
+            .RuleFor(f => f.PictureUrl, f => CheckForInvalidPicture(f.Image.PicsumUrl()))
+            .RuleFor(f => f.FilmInfoId, f => filmId);
 
         var actor = faker.Generate();
 
@@ -122,11 +123,12 @@ public class FakerInfo
         Console.WriteLine($"FullName: {actor.FullName}");
         Console.WriteLine($"DateOfBirth: {actor.DateOfBirth}");
         Console.WriteLine($"Age: {actor.Age}");
-        Console.WriteLine($"Height: {actor.height}");
+        Console.WriteLine($"Height: {actor.Height}");
         Console.WriteLine($"Career: {actor.Career}");
         Console.WriteLine($"Role: {actor.Role}");
         Console.WriteLine($"Biography: {actor.Biography}");
         Console.WriteLine($"PictureUrl: {actor.PictureUrl}");
+        Console.WriteLine($"FilmInfoId: {actor.FilmInfoId}");
         Console.WriteLine(new string('-', 30));
         Console.WriteLine("\n");
 

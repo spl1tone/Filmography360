@@ -4,8 +4,9 @@
 
 @{
     var _db = new db();
-    var film = _db.FilmInfos.FirstOrDefault(f => f.Id == (int)ViewBag.Id);
-    var actors = _db.Actors.Where(a => a.FilmStarredIn == film.Name).ToList();
+    int? filmId = ViewBag.Id;
+    var film = _db.FilmInfos.FirstOrDefault(f => f.Id == filmId);
+    var actors = _db.Actors.Where(a => a.FilmInfoId == film.Id).ToList();
 }
 
 <!DOCTYPE html>
