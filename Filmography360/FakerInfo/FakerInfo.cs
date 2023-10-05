@@ -8,8 +8,6 @@ namespace Filmography360.FakerInfo;
 
 public class FakerInfo
 {
-    public static List<FilmInfo> FilmList = new();
-    public static List<Actor> ActorList = new();
 
     static Random random = new Random();
     static int ActorId = 1;
@@ -60,8 +58,6 @@ public class FakerInfo
             Console.WriteLine(new string('-', 30));
             Console.WriteLine("\n");
 
-            // Add film to List
-            //FilmList.Add(filmInfo);
             _db.FilmInfos.Add(filmInfo);
             _db.SaveChanges();
 
@@ -132,8 +128,6 @@ public class FakerInfo
         Console.WriteLine(new string('-', 30));
         Console.WriteLine("\n");
 
-        //Add actors to List
-        //ActorList.Add(actor);
         _db.Actors.Add(actor);
         _db.SaveChanges();
 
