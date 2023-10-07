@@ -14,6 +14,9 @@ public class FakerInfo
     static string[] MPAAS = { "G", "PG", "PG-13", "R" };
     static string[] Roles = { "Actor", "Director", "Producer", "Screenwriter", "Cinematographer", "Film Editor", "Costume Designer", "Makeup Artist", "Stunt Performer", "Set Designer", "Composer", "Production Assistant", "Casting Director" };
 
+    public static List<FilmInfo> filmInfosForTest = new();
+    public static List<Actor> actorsForTest = new();
+
     public void CreateData (int filmCount)
     {
         var _db = new db();
@@ -58,9 +61,11 @@ public class FakerInfo
             Console.WriteLine(new string('-', 30));
             Console.WriteLine("\n");
 
-            _db.FilmInfos.Add(filmInfo);
-            _db.SaveChanges();
+            //Adding class to the database
+            //_db.FilmInfos.Add(filmInfo);
+            //_db.SaveChanges();
 
+            filmInfosForTest.Add(filmInfo);
 
             //Add Actors
             var actorsCount = random.Next(4, 11);
@@ -128,8 +133,11 @@ public class FakerInfo
         Console.WriteLine(new string('-', 30));
         Console.WriteLine("\n");
 
-        _db.Actors.Add(actor);
-        _db.SaveChanges();
+        actorsForTest.Add(actor);
+
+        //Adding class to the database
+        //_db.Actors.Add(actor);
+        //_db.SaveChanges();
 
 
     }

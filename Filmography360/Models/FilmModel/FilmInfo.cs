@@ -21,39 +21,4 @@ public class FilmInfo
     public string Budget { get; set; }
     public float Rating { get; set; }
     public string PictureUrl { get; set; }
-
-    public List<Actor> Actors { get; set; }
-
-    public FilmInfo ()
-    {
-
-    }
-
-    public FilmInfo (int id, string name, string genre, string description, string facts, string reasonsToLook, string duration, int yearOfIssue, string worldPremiere, int age, string mPAA, string budget, float rating, string pictureUrl)
-    {
-        Id = id;
-        Name = name;
-        Genre = genre;
-        Description = description;
-        Facts = facts;
-        ReasonsToLook = reasonsToLook;
-        Duration = duration;
-        YearOfIssue = yearOfIssue;
-        WorldPremiere = worldPremiere;
-        Age = age;
-        MPAA = mPAA;
-        Budget = budget;
-        Rating = rating;
-        PictureUrl = pictureUrl;
-    }
-
-    public void AddActor (Actor actor)
-    {
-        Actors.Add(actor);
-    }
-    public void AddActors (List<Actor> actors)
-    {
-        Actors = actors;
-    }
-
 }
