@@ -1,8 +1,3 @@
-/*body{
-    background-image: url(https://img1.akspic.ru/crops/8/6/1/0/5/150168/150168-temno_fioletovyj-graficeskij_dizajn-elektrik-purpur-purpurnyj_cvet-3840x2160.jpg);
-    background-size: cover;
-} 
-*/
 body{
     background-color: rgb(34, 34, 34) !important;
     width:100%;
@@ -234,6 +229,7 @@ body{
     background-color: black;
     display: flex;
     margin-top: 10px;
+    text-decoration: none;
 }
 
 #sortById:hover,
@@ -245,4 +241,5 @@ body{
     border: none;
     background-color: gray;
     transition: font-size 0.2s;
+    text-decoration: none;
 }

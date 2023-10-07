@@ -1,9 +1,36 @@
 ﻿@page
-@model Filmography360.Views.Home.indexDarkModel
 @using db = Filmography360.DataBase.DbContextController.MainDbContext;
 @{
     var films = new db().FilmInfos.ToList();
+    var _sortOrder = ViewBag.SortOrder;
+    SortItems(_sortOrder);
+
+    void SortItems (string sortOrder)
+    {
+
+        switch (sortOrder) {
+            case "ById":
+                films = films.OrderBy(f => f.Id).ToList();
+                break;
+            case "ByRating":
+                films = films.OrderByDescending(f => f.Rating).ToList();
+                break;
+            case "ByAlphabet":
+                films = films.OrderBy(f => f.Name).ToList();
+                break;
+            case "ByReleaseDate":
+                films = films.OrderByDescending(f => f.YearOfIssue).ToList();
+                break;
+            case "Random":
+                Random random = new Random();
+                films = films.OrderBy(f => random.Next()).ToList();
+                break;
+            default:
+                break;
+        }
+    }
 }
+
 <!Doctype html>
 <html lang="en">
 <head>
@@ -17,7 +44,7 @@
 <body>
     <div class="header">
         <div class="headerImg">
-            <img class="logoImg" src="/res/pictures/logo.png" width="34px" height="34px">
+            <img class="logoImg" src="/res/pictures/logo.png" width="34" height="34">
         </div>
         <div class="headerText">
             <p id="headTextPart1">FilmInfo <span id="headTextPart2">360</span></p>
@@ -49,73 +76,7 @@
     <div class="mainContainer">
         <p id="bestmoviesText">Best Movies</p>
 
-        <!--
-        <div class="film">
-            <a id="film-link" href="#">
-                <img id="filmImage" src="https://0d314c86-f76b-45cc-874e-45816116a667.selcdn.net/4c765b8d-3181-4feb-b452-faca7a241319.jpg">
-                <p id="film-name">FilmName</p>
-            </a>
-        </div>
-
-        <div class="film">
-            <a id="film-link" href="/Home/filmInfoDark">
-                <img id="filmImage" src="https://0d314c86-f76b-45cc-874e-45816116a667.selcdn.net/4c765b8d-3181-4feb-b452-faca7a241319.jpg">
-                <p id="film-name">FilmName</p>
-            </a>
-        </div>
-        <div class="film">
-            <a id="film-link" href="/Home/filmInfoDark">
-                <img id="filmImage" src="https://0d314c86-f76b-45cc-874e-45816116a667.selcdn.net/4c765b8d-3181-4feb-b452-faca7a241319.jpg">
-                <p id="film-name">FilmName</p>
-            </a>
-        </div>
-        <div class="film">
-            <a id="film-link" href="/Home/filmInfoDark">
-                <img id="filmImage" src="https://0d314c86-f76b-45cc-874e-45816116a667.selcdn.net/4c765b8d-3181-4feb-b452-faca7a241319.jpg">
-                <p id="film-name">FilmName</p>
-            </a>
-        </div>
-        <div class="film">
-            <a id="film-link" href="/Home/filmInfoDark">
-                <img id="filmImage" src="https://0d314c86-f76b-45cc-874e-45816116a667.selcdn.net/4c765b8d-3181-4feb-b452-faca7a241319.jpg">
-                <p id="film-name">FilmName</p>
-            </a>
-        </div>
-
-
-
-
-        <div class="film">
-            <a id="film-link" href="/Home/filmInfoDark">
-                <img id="filmImage" src="https://0d314c86-f76b-45cc-874e-45816116a667.selcdn.net/4c765b8d-3181-4feb-b452-faca7a241319.jpg">
-                <p id="film-name">FilmName</p>
-            </a>
-        </div>
-        <div class="film">
-            <a id="film-link" href="/Home/filmInfoDark">
-                <img id="filmImage" src="https://0d314c86-f76b-45cc-874e-45816116a667.selcdn.net/4c765b8d-3181-4feb-b452-faca7a241319.jpg">
-                <p id="film-name">FilmName</p>
-            </a>
-        </div>
-        <div class="film">
-            <a id="film-link" href="/Home/filmInfoDark">
-                <img id="filmImage" src="https://0d314c86-f76b-45cc-874e-45816116a667.selcdn.net/4c765b8d-3181-4feb-b452-faca7a241319.jpg">
-                <p id="film-name">FilmName</p>
-            </a>
-        </div>
-        <div class="film">
-            <a id="film-link" href="/Home/filmInfoDark">
-                <img id="filmImage" src="https://0d314c86-f76b-45cc-874e-45816116a667.selcdn.net/4c765b8d-3181-4feb-b452-faca7a241319.jpg">
-                <p id="film-name">FilmName</p>
-            </a>
-        </div>
-        <div class="film">
-            <a id="film-link" href="/Home/filmInfoDark">
-                <img id="filmImage" src="https://0d314c86-f76b-45cc-874e-45816116a667.selcdn.net/4c765b8d-3181-4feb-b452-faca7a241319.jpg">
-                <p id="film-name">FilmName</p>
-            </a>
-        </div>-->
-
+      
         @foreach (var film in films) {
             <div class="film">
                 <a id="film-link" href="/Home/filmInfoDark/@film.Id">
@@ -131,12 +92,11 @@
     <div class="sideContainer">
         <p id="categoryText">Sort</p>
         <div class="sort-buttons">
-            <button id="sortById"><p id="buttons-text">By Id</p></button>
-            <button id="sortByRating"><p id="buttons-text">By Rating</p></button>
-            <button id="sortByAlphabet"><p id="buttons-text">Alphabetically</p></button>
-            <button id="sortByActors"><p id="buttons-text">By Number Of Actors</p></button>
-            <button id="sortByReleaseDate"><p id="buttons-text">By Release Date</p></button>
-            <button id="sortRandom"><p id="buttons-text">Random</p></button>
+            <a id="sortById" href="/Home/Index?sortOrder=ById"><p id="buttons-text">By Id</p></a>
+            <a id="sortByRating" href="/Home/Index?sortOrder=ByRating"><p id="buttons-text">By Rating</p></a>
+            <a id="sortByAlphabet" href="/Home/Index?sortOrder=ByAlphabet"><p id="buttons-text">Alphabetically</p></a>
+            <a id="sortByReleaseDate" href="/Home/Index?sortOrder=ByReleaseDate"><p id="buttons-text">By Release Date</p></a>
+            <a id="sortRandom" href="/Home/Index?sortOrder=Random"><p id="buttons-text">Random</p></a>
         </div>
 
     </div>

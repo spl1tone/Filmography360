@@ -17,6 +17,7 @@ public class Program
 
         builder.Services.AddControllersWithViews();
         builder.Services.AddDbContext<MainDbContext>();
+        builder.Services.AddRazorPages();
 
         var app = builder.Build();
 
@@ -30,6 +31,8 @@ public class Program
         app.MapControllerRoute(
                name: "default",
                pattern: "{controller=Home}/{action=indexDark}/{id?}");
+
+        app.MapRazorPages();
 
         app.Run();
     }

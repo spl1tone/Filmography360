@@ -23,6 +23,12 @@ public class HomeController : Controller
         return View("aboutMeDark");
     }
 
+    public IActionResult Index (string sortOrder)
+    {
+        ViewBag.SortOrder = sortOrder;
+        return View("indexDark");
+    }
+
     public IActionResult FilmInfoDark (int id)
     {
         var film = _db.FilmInfos.FirstOrDefault(f => f.Id == id);
